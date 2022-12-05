@@ -516,7 +516,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -409.46213, y: 200.05742}
+  m_AnchoredPosition: {x: -399, y: 148}
   m_SizeDelta: {x: -860.1835, y: -425.3953}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &578413818
@@ -6190,7 +6190,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.010192871, y: 0.0000076293945}
+  m_AnchoredPosition: {x: 0.010192871, y: 0.000015258789}
   m_SizeDelta: {x: -0.0204, y: -1.251}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1802520993
@@ -6616,6 +6616,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ProjectilePrefab: {fileID: 1651337206028548127, guid: 876eaadc0be0c6f409d1ee42c026c373, type: 3}
   SpawnPoint: {fileID: 1903234761}
+  bombSpeed: 5
 --- !u!114 &2013484807
 MonoBehaviour:
   m_ObjectHideFlags: 0

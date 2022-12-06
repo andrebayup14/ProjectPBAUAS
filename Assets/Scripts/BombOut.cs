@@ -11,6 +11,7 @@ public class BombOut : MonoBehaviour
     Vector3 targetPos;
     Rigidbody rb;
     public float bombSpeed = 5f;
+    bool isClicked = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,26 +23,32 @@ public class BombOut : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1") == true)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
-            {
-                targetPos = hit.point;
-
-                GameObject ball = Instantiate(ProjectilePrefab, SpawnPoint.transform.position, SpawnPoint.rotation);
-                rb = ball.GetComponent<Rigidbody>();
-                rb.AddForce(targetPos, ForceMode.VelocityChange);
-                //rb.MovePosition(targetPos);
-                //rb.AddForce(transform.up + targetPos, ForceMode.VelocityChange);
-            }
-
+            isClicked = true;
+        }
+        else
+        {
+            isClicked = false;
         }
     }
 
     private void FixedUpdate()
     {
-       
+        if (isClicked)
+        {
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            //RaycastHit hit;
+            //if (Physics.Raycast(ray, out hit))
+            //{
+            //    targetPos = hit.point;
 
+            GameObject ball = Instantiate(ProjectilePrefab, SpawnPoint.transform.position, SpawnPoint.rotation);
+            rb = ball.GetComponent<Rigidbody>();
+            rb.AddRelativeForce((targetPos * 20f) + Vector3.up * 600f * rb.mass);
+                //   rb.AddForce(transform.up + targetPos, ForceMode.*VelocityChange);
+            
+
+        }
     }
 
 

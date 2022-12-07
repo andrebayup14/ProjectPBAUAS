@@ -5,82 +5,71 @@ using UnityEngine;
 
 public class Tank : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] WheelCollider backLeftCollider;
+    [SerializeField] WheelCollider backRightCollider;
+    [SerializeField] WheelCollider frontLeftCollider;
+    [SerializeField] WheelCollider frontRightCollider;
 
-    //kebutuhan: tank bisa gerak dengan wasd tanpa transform.position
-    //public Vector3 limitAccel;
-    float speed = 5f;
-    float acceleration = 0.5f;
-    Vector3 accel = new Vector3(0f, 0f, 0.5f);
-    Rigidbody rb;
-    float rotSpeed = 30f;
-    //tank bisa rotate
-    //tank memiliki akselerasi dan maksimum nilai akselerasi dibatasi
-    void Start()
+    [SerializeField] Transform backLeftTransform;
+    [SerializeField] Transform backRightTransform;
+    [SerializeField] Transform frontLeftTransform;
+    [SerializeField] Transform frontRightTransform;
+
+    public float accel = 500f;
+    public float brake = 300f;
+    public float maxAngleTurn = 15f;
+
+    float currentAccel;
+    float currentBrake;
+    float currentAngleTurn;
+    private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        
     }
-
-    // Update is called once per frame
-
-    void Update()
+    private void Update()
     {
-
+        
     }
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        rb.velocity = rb.transform.forward * speed;
-        ////maju - mundur
-        //if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-        //{
-        //    if (acceleration > 10f)
-        //    {
-        //        acceleration = 10f;
-        //    }
-        //    else
-        //    {
-        //        acceleration += acceleration * Time.deltaTime;
-        //    }
-        //    //rb.MovePosition((Vector3.right * (speed + acceleration) * Time.deltaTime * Mathf.Sin(rb.rotation.y * Mathf.Deg2Rad)) // itung maju lurus
-        //    //    + (Vector3.forward * (speed + acceleration) * Time.deltaTime * Mathf.Cos(rb.rotation.y * Mathf.Deg2Rad)) 
-        //    //    + rb.position);//maju agak belok 
+        currentAccel = accel * Input.GetAxis("Vertical");
+        currentAngleTurn = maxAngleTurn * Input.GetAxis("Horizontal");
 
-        //    //rb.MovePosition(new Vector3(rb.position.x + ((speed + acceleration) * Time.deltaTime * Mathf.Sin(rb.rotation.y *Mathf.Rad2Deg)),rb.position.y,
-        //    //    rb.position.z +((speed + acceleration) * Time.deltaTime * Mathf.Cos(rb.rotation.y *Mathf.Rad2Deg))));
-        //    rb.velocity = rb.transform.forward*acceleration*10000f;
-        //    //rb.AddForce(rb.position + transform.forward * (speed + acceleration) * Time.deltaTime); //bisa gerak ke arah tank
-        //}
-        //else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-        //{
-        //    if (acceleration > 5f)
-        //    {
-        //        acceleration = 5f;
-        //    }
-        //    else
-        //    {
-        //        acceleration += acceleration * Time.deltaTime;
-        //    }
-        //    //rb.MovePosition((Vector3.left * (speed + acceleration) * Time.deltaTime) + rb.position);
-        //    rb.AddForce(rb.position - transform.forward * (speed + acceleration) * Time.deltaTime); //bisa gerak ke arah tank
-        //}
-        //else if (!(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)))
-        //{
-        //    acceleration = 0.5f;
-        //}
-
-        ////kanan-kiri
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.Space))
         {
-            //rb.MovePosition((Vector3.back * speed * Time.deltaTime) + rb.position);
-            Quaternion angle = Quaternion.Euler(new Vector3(0f, 45f, 0f) * Time.deltaTime);
-            rb.MoveRotation(rb.rotation * angle);
+            currentBrake = brake;
         }
-        else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        else
         {
-            //rb.MovePosition((Vector3.forward * speed * Time.deltaTime) + rb.position);
-            Quaternion angle = Quaternion.Euler(new Vector3(0f, -45f, 0f) * Time.deltaTime);
-            rb.MoveRotation(rb.rotation * angle);
+            currentBrake = 0f;
         }
 
+        frontLeftCollider.motorTorque = currentAccel;
+        frontRightCollider.motorTorque = currentAccel;
+
+
+        frontLeftCollider.brakeTorque = currentBrake;
+        frontRightCollider.brakeTorque = currentBrake;
+        backLeftCollider.brakeTorque = currentBrake;
+        backRightCollider.brakeTorque = currentBrake;
+
+        frontLeftCollider.steerAngle = currentAngleTurn;
+        frontRightCollider.steerAngle = currentAngleTurn;
+
+        UpdateWheel(backLeftCollider, backLeftTransform);
+        UpdateWheel(backRightCollider, backRightTransform);
+        UpdateWheel(frontLeftCollider, frontLeftTransform);
+        UpdateWheel(frontRightCollider, frontRightTransform);
+
+    }
+    void UpdateWheel(WheelCollider wheCol, Transform trans)
+    {
+        Vector3 pos;
+        Quaternion rot;
+
+        wheCol.GetWorldPose(out pos, out rot);
+
+        trans.position = pos;
+        trans.rotation = rot;
     }
 }

@@ -6929,15 +6929,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9090891540632511495, guid: 7d1a90ef65e497347a148ec00ecefc11, type: 3}
       propertyPath: m_Mass
-      value: 2500
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090891540642740434, guid: 7d1a90ef65e497347a148ec00ecefc11, type: 3}
+      propertyPath: m_Size.x
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9090891540642740434, guid: 7d1a90ef65e497347a148ec00ecefc11, type: 3}
       propertyPath: m_Size.y
-      value: 1.5
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090891540642740434, guid: 7d1a90ef65e497347a148ec00ecefc11, type: 3}
+      propertyPath: m_Size.z
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090891540642740434, guid: 7d1a90ef65e497347a148ec00ecefc11, type: 3}
+      propertyPath: m_Center.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9090891540642740434, guid: 7d1a90ef65e497347a148ec00ecefc11, type: 3}
       propertyPath: m_Center.y
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090891540642740435, guid: 7d1a90ef65e497347a148ec00ecefc11, type: 3}
+      propertyPath: speed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090891540642740435, guid: 7d1a90ef65e497347a148ec00ecefc11, type: 3}
+      propertyPath: turnSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090891540642740435, guid: 7d1a90ef65e497347a148ec00ecefc11, type: 3}
+      propertyPath: gravityMul
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9090891540642740435, guid: 7d1a90ef65e497347a148ec00ecefc11, type: 3}
       propertyPath: backLeftTransform

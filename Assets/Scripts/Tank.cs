@@ -5,71 +5,42 @@ using UnityEngine;
 
 public class Tank : MonoBehaviour
 {
-    [SerializeField] WheelCollider backLeftCollider;
-    [SerializeField] WheelCollider backRightCollider;
-    [SerializeField] WheelCollider frontLeftCollider;
-    [SerializeField] WheelCollider frontRightCollider;
+    public float speed;
+    public float turnSpeed;
+    public float gravityMul;
 
-    [SerializeField] Transform backLeftTransform;
-    [SerializeField] Transform backRightTransform;
-    [SerializeField] Transform frontLeftTransform;
-    [SerializeField] Transform frontRightTransform;
+    private Rigidbody rb;
 
-    public float accel = 500f;
-    public float brake = 300f;
-    public float maxAngleTurn = 15f;
-
-    float currentAccel;
-    float currentBrake;
-    float currentAngleTurn;
     private void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();   
     }
     private void Update()
     {
-        
+       
     }
     private void FixedUpdate()
     {
-        currentAccel = accel * Input.GetAxis("Vertical");
-        currentAngleTurn = maxAngleTurn * Input.GetAxis("Horizontal");
-
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.W))
         {
-            currentBrake = brake;
+            rb.AddRelativeForce(new Vector3(Vector3.forward.x, 0, Vector3.forward.z) * speed * 10);
         }
-        else
+        if (Input.GetKey(KeyCode.S))
         {
-            currentBrake = 0f;
+            rb.AddRelativeForce(-(new Vector3(Vector3.forward.x, 0, Vector3.forward.z) * speed * 10) / 2);
         }
+        Vector3 locVelocity = transform.InverseTransformDirection(rb.velocity);
+        locVelocity.x = 0;
+        rb.velocity = transform.TransformDirection(locVelocity);
 
-        frontLeftCollider.motorTorque = currentAccel;
-        frontRightCollider.motorTorque = currentAccel;
-
-
-        frontLeftCollider.brakeTorque = currentBrake;
-        frontRightCollider.brakeTorque = currentBrake;
-        backLeftCollider.brakeTorque = currentBrake;
-        backRightCollider.brakeTorque = currentBrake;
-
-        frontLeftCollider.steerAngle = currentAngleTurn;
-        frontRightCollider.steerAngle = currentAngleTurn;
-
-        UpdateWheel(backLeftCollider, backLeftTransform);
-        UpdateWheel(backRightCollider, backRightTransform);
-        UpdateWheel(frontLeftCollider, frontLeftTransform);
-        UpdateWheel(frontRightCollider, frontRightTransform);
-
+        if (Input.GetKey(KeyCode.D))
+        {
+            rb.AddTorque(Vector3.up * turnSpeed * 10);
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            rb.AddTorque(-Vector3.up * turnSpeed * 10);
+        }
     }
-    void UpdateWheel(WheelCollider wheCol, Transform trans)
-    {
-        Vector3 pos;
-        Quaternion rot;
-
-        wheCol.GetWorldPose(out pos, out rot);
-
-        trans.position = pos;
-        trans.rotation = rot;
-    }
+    
 }

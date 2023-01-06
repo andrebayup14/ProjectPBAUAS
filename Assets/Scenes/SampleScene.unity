@@ -209,12 +209,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 235609896}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.404, z: 1.342}
+  m_LocalPosition: {x: 0, y: 0.289, z: 1.839}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8695317025727610090}
-  m_RootOrder: 2
+  m_Father: {fileID: 5604032757128089826}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &465811576
 PrefabInstance:
@@ -7067,7 +7067,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ProjectilePrefab: {fileID: 1651337206028548127, guid: 876eaadc0be0c6f409d1ee42c026c373, type: 3}
   SpawnPoint: {fileID: 235609897}
-  bombSpeed: 10
+  bombSpeed: 100
 --- !u!1 &4194121791128952008
 GameObject:
   m_ObjectHideFlags: 0
@@ -7188,6 +7188,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7623002693550440772}
+  - {fileID: 235609897}
   m_Father: {fileID: 8695317025727610090}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -22.448, y: 0, z: 0}
@@ -7317,7 +7318,6 @@ GameObject:
   - component: {fileID: 1902458873}
   - component: {fileID: 8695317025727610098}
   - component: {fileID: 4033947987570623474}
-  - component: {fileID: 8695317025727610097}
   m_Layer: 0
   m_Name: TankFree_Blue Variant
   m_TagString: Untagged
@@ -7505,24 +7505,9 @@ Transform:
   m_Children:
   - {fileID: 5604032757128089826}
   - {fileID: 2391499340331967865}
-  - {fileID: 235609897}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &8695317025727610097
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7061453648165407579}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c344b087028c724a857a3367eb7c3a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tower: {fileID: 5604032757128089826}
-  towerSpeed: 500
 --- !u!114 &8695317025727610098
 MonoBehaviour:
   m_ObjectHideFlags: 0

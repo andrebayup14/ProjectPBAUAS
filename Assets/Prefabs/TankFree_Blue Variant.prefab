@@ -264,6 +264,7 @@ GameObject:
   - component: {fileID: 9090891540642740434}
   - component: {fileID: 9090891540642740435}
   - component: {fileID: 9090891540632511495}
+  - component: {fileID: 5319353567002791948}
   m_Layer: 0
   m_Name: TankFree_Blue Variant
   m_TagString: Untagged
@@ -363,16 +364,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c59341666b1e0847ba5854b04d6147d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backLeftCollider: {fileID: 0}
-  backRightCollider: {fileID: 0}
-  frontLeftCollider: {fileID: 0}
-  frontRightCollider: {fileID: 0}
-  backLeftTransform: {fileID: 2102270388330601517}
-  backRightTransform: {fileID: 5769996132985576259}
-  frontLeftTransform: {fileID: 197982697394243540}
-  frontRightTransform: {fileID: 3127481694482190673}
-  speed: 0
-  turnSpeed: 0
+  theRB: {fileID: 0}
+  maxSpeed: 0
+  forwardAccel: 8
+  reverseAccel: 4
+  turnStrength: 180
 --- !u!54 &9090891540632511495
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -389,6 +385,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5319353567002791948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2294028888619948197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cb916e57e93d2a438b81501320093af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ProjectilePrefab: {fileID: 1651337206028548127, guid: 876eaadc0be0c6f409d1ee42c026c373, type: 3}
+  SpawnPoint: {fileID: 0}
+  bombSpeed: 5
 --- !u!1 &2374817625372818043
 GameObject:
   m_ObjectHideFlags: 0

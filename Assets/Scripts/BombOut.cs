@@ -7,7 +7,7 @@ using TMPro;
 public class BombOut : MonoBehaviour
 {
     public GameObject ProjectilePrefab;
-    public Transform SpawnPoint;
+    public GameObject SpawnPoint;
     Vector3 targetPos;
     Rigidbody rb;
     public float bombSpeed = 5f;
@@ -21,31 +21,32 @@ public class BombOut : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") == true)
-        {
-            isClicked = true;
-        }
-        else
-        {
-            isClicked = false;
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        if (isClicked)
+        //if (Input.GetButtonDown("Fire1") == true)
+        //{
+        //    isClicked = true;
+        //}
+        //else
+        //{
+        //    isClicked = false;
+        //}
+        if (Input.GetButtonDown("Fire1"))
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
             //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             //RaycastHit hit;
             //if (Physics.Raycast(ray, out hit))
             //{
             //    targetPos = hit.point;
 
-            GameObject ball = Instantiate(ProjectilePrefab, SpawnPoint.transform.position, SpawnPoint.rotation);
-            rb = ball.GetComponent<Rigidbody>();
-            rb.AddRelativeForce(new Vector3(0f, 1200f * ProjectilePrefab.GetComponent<Rigidbody>().mass, 0f));
+            GameObject ball = Instantiate(ProjectilePrefab, SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+            ball.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0f, 800f * ProjectilePrefab.GetComponent<Rigidbody>().mass, 0f));
         }
+    }
+
+    private void FixedUpdate()
+    {
+       
     }
 
 

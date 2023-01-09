@@ -1357,7 +1357,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1725466037}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
@@ -1885,7 +1885,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1725466032}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3477ef2ead1d1af43b1e5b46c93b9e6a, type: 3}
+  m_Script: {fileID: 11500000, guid: 67b8a7a0444ad074b88345c7aaba3360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   panelLevel: {fileID: 1891579421}

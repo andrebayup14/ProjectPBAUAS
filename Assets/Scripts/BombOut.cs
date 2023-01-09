@@ -44,10 +44,7 @@ public class BombOut : MonoBehaviour
 
             GameObject ball = Instantiate(ProjectilePrefab, SpawnPoint.transform.position, SpawnPoint.rotation);
             rb = ball.GetComponent<Rigidbody>();
-            rb.AddRelativeForce((targetPos * 20f) + Vector3.up * 600f * rb.mass);
-                //   rb.AddForce(transform.up + targetPos, ForceMode.*VelocityChange);
-            
-
+            rb.AddRelativeForce(new Vector3(0f, 1200f * ProjectilePrefab.GetComponent<Rigidbody>().mass, 0f));
         }
     }
 

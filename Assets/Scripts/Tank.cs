@@ -6,10 +6,8 @@ using UnityEngine;
 
 public class Tank : MonoBehaviour
 {
-    public float speed;
-    public float turnSpeed;
-
-    private Rigidbody rb;
+    Rigidbody rb;
+    public float speed, turnSpeed;
 
     private void Start()
     {

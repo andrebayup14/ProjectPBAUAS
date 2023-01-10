@@ -6,20 +6,22 @@ using UnityEngine.UI;
 public class BombHit : MonoBehaviour
 {
     public Rigidbody tank, bomb;
-    public HealthBar healthBar;
     public ParticleSystem smoke1, smoke2;
     public ParticleSystem fire;
+    public HealthBar healthBar;
     public int damage = 5;
-    public int health;
-    int maxHealth;
+    public int health = 100;
+    public int maxHealth = 100;
 
     // Start is called before the first frame update
     void Start()
     {
         tank = GetComponent<Rigidbody>();
-        maxHealth = healthBar.health; // ambil max health
-        health = maxHealth; 
-
+        health = maxHealth;
+        if (healthBar != null)
+        {
+            healthBar.health = health;
+        }
         smoke1.enableEmission = false;
         smoke2.enableEmission = false;
         fire.enableEmission = false;
@@ -28,7 +30,6 @@ public class BombHit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthBar.health = health;
         if (health / (double)maxHealth <=0.75 && health / (double)maxHealth > 0.5)
         {
             smoke1.enableEmission = true;
@@ -43,15 +44,19 @@ public class BombHit : MonoBehaviour
         {
             fire.enableEmission = true;
         }
-        else
+        else if (health / (double)maxHealth <= 0)
         {
             Destroy(tank);
+            
         }
     }
     private void OnCollisionEnter(Collision collision)
     {
         bomb = collision.rigidbody;
         health -= damage;
-
+        if (healthBar != null)
+        {
+            healthBar.health = health;
+        }
     }
 }
